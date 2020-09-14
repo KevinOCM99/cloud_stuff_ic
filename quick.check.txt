@@ -1,0 +1,402 @@
+###################################################
+##This is a quick check for all things so far
+###################################################
+
+--proxy
+export https_proxy=cn-proxy.cn.oracle.com:80
+export http_proxy=cn-proxy.cn.oracle.com:80
+export NO_PROXY=localhost,127.0.0.1,172.16.1.92
+unset https_proxy
+unset http_proxy
+--for java
+-Dhttp.proxyHost=cn-proxy.cn.oracle.com -Dhttp.proxyPort=80 -Dhttps.proxyHost=cn-proxy.cn.oracle.com -Dhttps.proxyPort=80
+
+
+--dns
+209.17.4.8	login.oracle.com 
+184.26.237.196	edelivery.oracle.com
+
+--Linux OS
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+
+--oci-cli
+yum install gcc libffi-devel python-devel openssl-devel -y
+easy_install pip
+pip install virtualenv
+easy_install pip==18.0
+easy_install --upgrade pyOpenSSL==17.5
+pip install oci oci-cli -q
+
+--vnc@OL7
+yum install tigervnc-server
+cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:3.service
+cd /etc/systemd/system
+systemctl daemon-reload
+systemctl enable vncserver@:3.service
+systemctl start vncserver@:3.service
+systemctl status vncserver@:3.service
+systemctl stop vncserver@:3.service
+[Service]
+Type=simple
+# Clean any existing files in /tmp/.X11-unix environment
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+ExecStart=/usr/sbin/runuser -l root -c "/usr/bin/vncserver -fg %i"
+PIDFile=/root/.vnc/%H%i.pid
+ExecStop=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+
+
+--vnc@OL6
+yum groupinstall "Desktop" "X Window System" "General Purpose Desktop" -y
+yum install firefox -y
+yum install tigervnc-server -y 
+vi /etc/sysconfig/vncservers
+VNCSERVERS="3:root 4:oracle"
+VNCSERVERARGS[3]="-geometry 1280x1024"
+VNCSERVERARGS[4]="-geometry 1280x1024"
+
+
+--sshd
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+service sshd restart
+PermitRootLogin
+AllowUsers
+
+--ssh socket/tunnel 
+##
+ssh -i kk -L 127.0.0.1:13306:129.152.132.127:3306 opc@129.152.132.127
+ssh -i ~/.ssh/id_rsa -N -f -R 11521:127.0.0.1:1521 opc@129.213.98.48
+ssh -o ServerAliveInterval=30 -o "ProxyCommand nc --proxy-type http --proxy cn-proxy.cn.oracle.com:80 %h %p" -N -f -R 10022:0.0.0.0:22 opc@130.61.75.1
+ssh -i ~/.ssh/id_rsa -N -f -L 17809:129.213.98.48:17809 opc@129.213.98.48
+ssh -v -N -f -D 127.0.0.1:9000 opc@129.213.98.48
+ssh -i ~/.ssh/id_rsa -N -f -L 0.0.0.0:7819:129.213.98.48:7819 opc@129.213.98.48
+##
+ssh -i ~/.ssh/id_rsa.opc -o ServerAliveInterval=30 -N -f -L 11521:18.136.7.75:1521 opc@129.213.158.74
+ssh -i ~/.ssh/id_rsa.opc -v -N -f -D 127.0.0.1:9999 opc@129.156.113.102
+##rdp
+ssh -i ~/.ssh/id_rsa.opc -o ServerAliveInterval=30 -N -f -L 0.0.0.0:13389:130.61.111.134:3389 opc@129.146.132.100
+
+##
+yum install nmap-ncat
+scp -o "ProxyCommand ssh opc@129.213.36.8 nc %h %p" opc@129.156.112.218:/tmp/*.tar 
+ssh -o "ProxyCommand ssh opc@129.213.36.8 nc %h %p" opc@129.156.112.218
+scp -o "ProxyCommand nc --proxy-type http --proxy cn-proxy.cn.oracle.com:80 %h %p" -i ~/.ssh/id_rsa.opc opc@129.156.112.218:/tmp/etc.tar .
+ssh -o "ProxyCommand nc --proxy-type http --proxy cn-proxy.cn.oracle.com:80 %h %p" -i ~/.ssh/id_rsa.opc opc@129.156.112.218
+--not a normal port
+scp -P 10022 kzroot@localhost:~/SecureW2_JoinNow.run .
+--proxy for ssh
+ssh -o "ProxyCommand nc --proxy-type http --proxy cn-proxy.cn.oracle.com:80 %h %p" opc@130.61.75.1
+ssh -o "ProxyCommand nc -X connect -x cn-proxy.cn.oracle.com:80 %h %p" opc@130.61.75.1
+
+
+
+--key
+ssh-keygen -t rsa -C "dbaami@hotmail.com"
+ssh-keygen -y -f id_rsa > id_rsa.pub.kk
+ssh-keygen -y -f hanadr_key.openssh > hanadr_key.pub
+
+--git
+git remote set-url origin git@github.com:KevinOCM99/cloud_stuff
+git reset --hard HEAD
+git log -n 5
+git revert -n 06fa970b00886dd46b3be77f725337e5d33f6125
+##
+curl -sSL https://raw.githubusercontent.com/KevinOCM99/dbms_oracle_ms/master/login.sql > login.sql
+##
+wget https://github.com/KevinOCM99/dbms_oracle_ms/archive/master.zip
+
+--Disk
+du -s * | sort -rn | cut -f2- | xargs -d "\n" du -sh | more
+
+--swap size
+grep SwapTotal /proc/meminfo
+
+--swap in lvm
+fdisk
+pvcreate
+vgdisplay
+vgextend vg_rac2 /dev/sdb1
+lvdisplay
+lvresize -L +2G /dev/vg_rac2/lv_swap
+swapoff -a
+mkswap /dev/vg_rac2/lv_swap
+swapon -va
+
+--swap in normal
+fdisk
+t, 82
+partprobe
+pvcreate
+mkswap /dev/sdb1
+swapon /dev/sdb1
+vi /etc/fstab
+uuid= swap  swap defaults 0 0
+
+--tmpfs
+tmpfs       /dev/shm    tmpfs  defaults,size=512m   0    0 
+
+--add partition to vg
+fdisk
+t,82
+pvcreate
+vgdisplay
+vgextend vg_rac2 /dev/sdb1
+lvdisplay
+lvresize -L +2G 
+xfs_growfs /dev/mapper/vg_rac2-lv_root
+resize2fs /dev/mapper/vg_rac2-lv_root
+
+--rpm 
+rpm -ql jdk1.8.0_101-1.8.0_101-fcs.x86_64
+
+--find
+find ./ -name "*" | xargs grep -l Xmx
+
+--nc testing
+nc -vz 172.16.1.192 1521
+nc -vuz 172.16.1.192 4617
+nc -vu 172.16.1.192 4617
+nc -v 172.16.1.192 1521
+nc -w 1 172.16.1.192 1521 < /dev/null && echo "tcp port ok"
+nc --udp -w 1 172.16.1.192 4617 < /dev/null && echo "udp port ok"
+--
+nc -w 1 -v 129.146.91.171 80 
+nc -w 1 --send-only -v 129.146.91.171 80 
+nc -w 1 --proxy-type http --proxy cn-proxy.cn.oracle.com:80 -v 129.146.91.171 80 
+nc -w 3 --send-only -v 129.146.91.171 80 
+nc --proxy-type http --proxy cn-proxy.cn.oracle.com:80 -w 3 --send-only -v 129.146.91.171 80 </dev/null; echo $?
+
+--nmcli
+nmcli device status
+nmcli device connect enp0s8
+
+--pre-installation set for Oracle Database, so far only 18c
+oracle-rdbms-server-11gR2-preinstall.x86_64 
+oracle-rdbms-server-12cR1-preinstall.x86_64 
+oracle-database-server-12cR2-preinstall.x86_64
+oracle-database-preinstall-18c.x86_64
+
+
+mkdir -p /u01/app
+chown oracle:oinstall /u01/app
+mkdir -p /u01/app/oracle/oraInventory
+
+
+--mysql
+mysql -u kevin -pWelcome1_ -h kkmysql.clqqgsptftsm.ap-northeast-1.rds.amazonaws.com kk
+
+--virtualbox, vb
+set PATH="C:\Program Files\Oracle\VirtualBox\";%PATH%
+VBoxManage modifyvm "myJump" --cpus 2
+"C:\Program Files\Oracle\VirtualBox\VBoxManage" internalcommands sethduuid "D:\VMs\MySQLC\node1\OL73.vdi"
+"C:\Program Files\Oracle\VirtualBox\VBoxManage" modifyhd "D:\VMs\jump\OL73MIN.vdi" --compact
+"C:\Program Files\Oracle\VirtualBox\VBoxManage" modifyhd "D:\VMs\12CR2_HOL\Oracle Upgrade HOL 12.2.vdi" --resize 20480
+dd if=/dev/zero of=/my.output.file && rm /my.output.file;
+
+
+--pip
+curl -O https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
+pip install cryptography
+pip install paramiko
+
+
+--bare metal console & docs
+https://console.us-ashburn-1.oraclecloud.com/
+https://docs.us-phoenix-1.oraclecloud.com/Content/Database/Concepts/overview.htm
+wget https://swiftobjectstorage.us-ashburn-1.oraclecloud.com/v1/dbaaspatchstore/DBaaSOSPatches/oci_dbaas_ol6repo -O /tmp/oci_dbaas_ol6repo
+
+
+--firewall-cmd
+firewall-cmd --zone=public --add-port=3306/tcp --permanent
+firewall-cmd --zone=public --remove-port=7820-7840/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --list-ports
+
+--
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+
+--local_listener
+alter system set local_listener='(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=server1)(PORT=1571)))';
+
+
+--
+create pluggable database pdb3 admin user pdbdba identified by oracle;
+create pluggable database pdb1 admin user pdbdba identified by oracle 
+file_name_convert=('/u01/app/oracle/oradata/cdb1/pdbseed','/u01/app/oracle/oradata/cdb1/pdb1');
+
+create tablespace kk1 datafile size 10m autoextend on ENCRYPTION DEFAULT STORAGE(ENCRYPT);
+create tablespace kk encryption default storage(encrypt);
+
+--tar with split
+tar -cvf - netbeans-8.2-linux.sh | split -b 100M - nb.tar.
+cat nb.tar.* | tar -xvf -
+tar -cvzf - instantclient_12_2 | split -b 35M - ic122.tar.gz
+cat ic122.tar.gz* | tar -xvzf -
+
+
+--instant client
+wget https://s3-us-west-1.amazonaws.com/kkpublic/instantclient-basic-linux.x64-12.2.0.1.0.zip
+wget https://s3-us-west-1.amazonaws.com/kkpublic/instantclient-sqlplus-linux.x64-12.2.0.1.0.zip
+wget https://s3-us-west-1.amazonaws.com/kkpublic/instantclient-tools-linux.x64-12.2.0.1.0.zip
+
+--nls_lang
+export NLS_LANG="SIMPLIFIED CHINESE_CHINA.AL32UTF8"
+export NLS_LANG=AMERICAN_AMERICA.AL32UTF8
+
+--oracle preinstall packages
+oracle-rdbms-server-11gR2-preinstall
+oracle-rdbms-server-12cR1-preinstall
+oracle-database-server-12cR2-preinstall
+oracle-database-preinstall-18c
+
+
+--Jiu/jiu 
+j createVcn vcn001 10.0.0.0/16 G1
+j demoCreateSingleSubnetVcn vcn001 G1
+j showVcn ? GSE11
+j showVcn vcn20180808075549 GSE11
+j createInstance ins001 vcn001vcn vcn001pub0 Oracle-Linux-7.5-2018.06.14-0 VM.Standard1.2 kk.sh G1
+j createInstanceByVcnId ins001 ocid1.subnet.oc1.iad.aaaaaaaarao7pgv24qg2vttllvg6yxicjn4fj5pnxrdbin3bi4trcnp4u3ga Oracle-Linux-6.9-2018.06.14-0 VM.Standard1.2 ~/kk.sh GSE11
+j showImage G1
+j showShape G1
+j showVcn vnc001 G1
+--Security List for OCI
+j showSecListById ocid1.securitylist.oc1.iad.aaaaaaaa4uonqtzdsrgjccdowx7gkir46dxandjwwmytkdug74ujgtgks3xq G1
+j secListAddPort ocid1.securitylist.oc1.iad.aaaaaaaa4uonqtzdsrgjccdowx7gkir46dxandjwwmytkdug74ujgtgks3xq 5902 G1
+j secListAddSinglePort ocid1.securitylist.oc1.phx.aaaaaaaafwegtve6jt7xwecp67gaeftwfgaui442oay5ojjilxzuvvujtola 13306 G5PH
+j showSecListById ocid1.securitylist.oc1.phx.aaaaaaaafwegtve6jt7xwecp67gaeftwfgaui442oay5ojjilxzuvvujtola G5PH
+j secListRemoveSinglePort ocid1.securitylist.oc1.phx.aaaaaaaafwegtve6jt7xwecp67gaeftwfgaui442oay5ojjilxzuvvujtola 3306 G5PH &
+
+--
+j showImage G2
+j showAd G2
+j createVcnDefaultIgw vcn003 G2
+j addIgwForVcn vcn004 G2
+j createInstanceByVcnId ins001 ocid1.subnet.oc1.iad.aaaaaaaaexjgwxpoeymtjaub5zbtwzb7kyxolxpnrm2vbxmn4hfjg3xzfu2a Oracle-Linux-7.5-2018.09.25-0 VM.Standard2.2 ~/kk.sh G2
+j createPublicSubnetWithDefaultSettings subnet002 vcn004 YiGV:US-ASHBURN-AD-2 10.0.1.0/24 G2
+j createPublicSubnetWithDefaultSettings subnet003 vcn004 YiGV:US-ASHBURN-AD-3 10.0.2.0/24 G2
+j createInstanceByVcnId ins002 ocid1.subnet.oc1.iad.aaaaaaaakponni3trfmqfrxsxwhxkjcwlnxy4ftkpe367qhydknuaqwtn7ka Oracle-Linux-7.5-2018.09.25-0 VM.Standard2.2 ~/kk.sh G2
+j createInstanceByVcnId ins003 ocid1.subnet.oc1.iad.aaaaaaaaxajgrvuxb3hu5nbrqusdu7snhwvcpzxkw6ludnwn6tbvslol2y4a Oracle-Linux-7.5-2018.09.25-0 VM.Standard2.2 ~/kk.sh G2
+--new 20181030
+j createVcn vcn001 10.0.0.0/16 $PV
+j createPublicSubnetWithDefaultSettings subnet001 vcn001 YiGV:US-ASHBURN-AD-1 10.0.1.0/24 $PV
+j createPublicSubnetWithDefaultSettings subnet002 vcn001 YiGV:US-ASHBURN-AD-2 10.0.2.0/24 $PV
+j createPublicSubnetWithDefaultSettings subnet003 vcn001 YiGV:US-ASHBURN-AD-3 10.0.3.0/24 $PV
+j createInstance k8s01 vcn001 subnet001 Oracle-Linux-7.5-2018.09.25-0 VM.Standard2.2 ~/kk.sh $PV
+j addIgwForVcn vcn001 $PV
+j destroyInstanceInVcn ins002 vcn002 $PV
+--production
+j createVcn vcn001 10.0.0.0/16 P1AB
+j createPublicSubnetWithDefaultSettings subnet001 vcn001 HRPl:US-ASHBURN-AD-1 10.0.1.0/24 P1AB
+j createInstanceByVcnId ins003 ocid1.subnet.oc1.iad.aaaaaaaalreu2pzimtk7md3zendpmdlb3gtkwyxwinnhbavf46jbdp6hdzoa Oracle-Linux-7.5-2018.10.16-0 VM.Standard2.2 ~/kk.sh P1AB
+j addIgwForVcn vcn001 P1AB
+j destroyInstanceInVcn ins033 vcn001 P1AB
+
+--this may need proxy in corp nw
+zip -s 10m instantclient-basic-linux.x64-12.2.0.1.0.zip --out kk.zip
+tar -czvf - netbeans-8.2-linux.sh | split -b 100M - nb.tar.gz
+j upload kk001 newapache-maven-3.5.0-bin.zip apache-maven-3.5.0-bin.zip G2
+j showObject kk001 G2
+
+--openssl keys
+openssl genrsa -out ~/bob_key.pem -aes128 2048
+openssl rsa -pubout -in ~/bob_key.pem -out ~/bob_key_public.pem
+openssl genrsa -out ~/bob_key.pem 2048
+openssl rsa -pubout -in ~/bob_key.pem -out ~/bob_key_public.pem
+
+--oracle ssl with orapki
+orapki wallet create -wallet "/u01/app/oracle/wallet" -pwd WalletPasswd123 -auto_login_local
+orapki wallet add -wallet "/u01/app/oracle/wallet" -pwd WalletPasswd123 -dn "CN=`hostname`" -keysize 1024 -self_signed -validity 3650
+orapki wallet display -wallet "/u01/app/oracle/wallet" -pwd WalletPasswd123
+orapki wallet display -wallet "/u01/app/oracle/wallet" -pwd WalletPasswd123 -complete
+orapki wallet remove -wallet "/u01/app/oracle/wallet" -pwd WalletPasswd123 -trusted_cert  -dn "CN=KEVZHANG-CN"
+orapki wallet export -wallet "/u01/app/oracle/wallet" -pwd WalletPasswd123 -dn "CN=`hostname`" -cert /tmp/`hostname`-certificate.crt
+orapki wallet create -wallet "C:\Users\kevinzhang\sqlnet_ssl" -pwd WalletPasswd123 -auto_login_local
+orapki wallet add -wallet "C:\Users\kevinzhang\sqlnet_ssl" -pwd WalletPasswd123 -dn "CN=%computername%" -keysize 1024 -self_signed -validity 3650
+orapki wallet display -wallet "C:\Users\kevinzhang\sqlnet_ssl" -pwd WalletPasswd123
+orapki wallet remove -wallet "C:\Users\kevinzhang\sqlnet_ssl" -pwd WalletPasswd123 -trusted_cert  -dn "CN=DB12CR2"
+orapki wallet add -wallet "C:\Users\kevinzhang\sqlnet_ssl" -pwd WalletPasswd123 -trusted_cert -cert C:\Users\kevinzhang\db_server.crt
+orapki wallet export -wallet "C:\Users\kevinzhang\sqlnet_ssl" -pwd WalletPasswd123 -dn "CN=%computername%" -cert C:\Users\kevinzhang\%computername%-certificate.crt
+
+
+--oci cli for adb
+##########
+export PV=P1AB
+export PV=G1AB
+export PV=G5AB
+##
+oci db autonomous-data-warehouse create --profile $PV --db-name BJSCCADW0506 --cpu-core-count 1 --data-storage-size-in-tbs 1 --admin-password Welcome_123456789
+oci db autonomous-data-warehouse list --profile $PV --output table --query "data [*].{C01_ID:id, C00_DbName:\"db-name\"}"
+oci db autonomous-data-warehouse list --profile $PV --output table --query "data [*].{C00_InsName:\"display-name\", C01_DbName:\"db-name\", C02_OCPU:\"cpu-core-count\", C03_TB:\"data-storage-size-in-tbs\", C04_Verion:\"db-version\", C05_Status:\"lifecycle-state\", C06_CreateTime:\"time-created\"}"
+oci db autonomous-data-warehouse get --profile $PV --autonomous-data-warehouse-id 
+oci db autonomous-data-warehouse generate-wallet --profile $PV --file /tmp/myWallet.zip --password Welcome_1 --autonomous-data-warehouse-id 
+oci db autonomous-data-warehouse delete --profile $PV --autonomous-data-warehouse-id 
+
+--oci cli for compute
+oci compute instance action --action START --instance-id ocid1.instance.oc1.eu-frankfurt-1.abtheljrvjvwy2dqcdapbtpoaju2ys7z5rywt7b2wgmklqr2e3hmtfllgu6q --profile P3FF
+oci compute instance get --instance-id ocid1.instance.oc1.eu-frankfurt-1.abtheljrvjvwy2dqcdapbtpoaju2ys7z5rywt7b2wgmklqr2e3hmtfllgu6q --profile P3FF
+oci compute instance get --instance-id ocid1.instance.oc1.eu-frankfurt-1.abtheljrvjvwy2dqcdapbtpoaju2ys7z5rywt7b2wgmklqr2e3hmtfllgu6q --profile P3FF | grep life
+
+
+###################################
+#unload data
+###################################
+~/instantclient_12_2/sqluldr2linux64.bin user=admin/Welcome_123456789@bjsccadw0507_high query="select * from customers;" file=~/csv_output/customers.csv
+~/instantclient_12_2/sqluldr2linux64.bin user=admin/Welcome_123456789@bjsccadw0507_high query="select * from ssb.customer;" file=~/csv_output/ssb.customers.csv
+~/instantclient_12_2/sqluldr2linux64.bin user=admin/Welcome_123456789@bjsccadw0507_high sql=~/csv_output/kk.sql head=yes file=~/csv_output/customers_header.csv
+
+
+###################################
+###################################
+
+###################################
+#grep and string
+###################################
+cat env-vars | grep "^[^#]"
+
+
+###################################
+#DBaaS OS repo
+###################################
+curl -s http://169.254.169.254/opc/v1/instance/ |grep region
+wget https://swiftobjectstorage.eu-frankfurt-1.oraclecloud.com/v1/dbaaspatchstore/DBaaSOSPatches/oci_dbaas_ol6repo -O /tmp/oci_dbaas_ol6repo
+cp /tmp/oci_dbaas_ol6repo /etc/yum.repos.d/ol6.repo
+yum repolist
+
+
+###################################
+#
+###################################
+wget --user-agent="Mozilla/5.0"  --no-check-certificate  --load-cookies=kk --save-cookies=kk --keep-session-cookies --keep-session-cookies "https://download.oracle.com/otn/linux/oracle18c/180000/LINUX.X64_180000_db_home.zip" -O LINUX.X64_180000_db_home.zip
+
+
+###################################
+#show lines not commented
+###################################
+-v "^#|^$"
+-Ev "^#|^$"
+
+###################################
+#docker @ ol
+###################################
+sudo -s
+yum install docker-engine
+usermod -aG docker opc
+systemctl enable docker
+systemctl start docker
+
+
+###################################
+#docker @ centos
+###################################
+sudo -s
+yum remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+--
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum install -y docker-ce docker-ce-cli containerd.io
+usermod -aG docker opc
+systemctl start docker
+systemctl enable docker
+
+

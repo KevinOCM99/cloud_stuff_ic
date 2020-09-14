@@ -1,0 +1,10 @@
+yum -y install zlib-devel openssl-devel cpio expat-devel gettext-devel curl-devel perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker
+wget -O v1.8.1.2.tar.gz https://github.com/git/git/archive/v1.8.1.2.tar.gz
+tar -xzvf ./v1.8.1.2.tar.gz
+cd git-1.8.1.2/
+
+make prefix=/usr/local/git-1.8.1.2 all
+make prefix=/usr/local/git-1.8.1.2 install
+
+export PATH=$PATH:/usr/local/git-1.8.1.2/bin
+ln -s /usr/local/git-1.8.1.2/bin/git /usr/bin/git

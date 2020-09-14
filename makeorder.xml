@@ -1,0 +1,444 @@
+<?xml version="1.0" standalone="yes" ?>
+<!-- Copyright (c) 1999, 2019, Oracle and/or its affiliates.
+All rights reserved. -->
+<!-- Do not modify the contents of this file by hand. -->
+<ohmd:MAKE_LIST xmlns:ohmd="make_desc.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="make_desc.xsd make_desc.xsd">
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="clean" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="rat_on" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="part_on" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="dm_on" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="olap_on" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="sdo_on" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="rac_off" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="dnfs_off" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_net_client.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="mkldflags" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.aso" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.network.rsf" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_net_client.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="ntcontab.o" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.aso" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.network.rsf" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_net_client.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="nnfgt.o" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.aso" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.network.rsf" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="client_sharedlib" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.aso" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.network.rsf" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.rdbms.plsql" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.rdbms.rsf" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="precomp/lib/ins_precomp.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="links" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.precomp.common" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="precomp/lib/ins_precomp.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="proc" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.precomp.common" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="precomp/lib/ins_precomp.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="gen_pcscfg" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.precomp.common" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="precomp/lib/ins_precomp.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="procob" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.precomp.common" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="idg4odbc" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms.hsodbc" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_net_client.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="itnsping" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.rsf" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.network.client" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="ctx/lib/ins_ctx.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="install" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.ctx" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="racg/lib/ins_has.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="racg_install" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.has.db" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_net_client.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="preinstall" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.client" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="plsql/lib/ins_plsql.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="install" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms.plsql" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="all_no_orcl" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+<ohmd:COMP NAME="oracle.has.db" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_net_client.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="install" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.aso" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="BOTH" TARGETNAME="ipc_relink" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="sqlplus/lib/ins_sqlplus.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="install" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.sqlplus" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="ldap/lib/ins_ldap.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="clientonlyinstall" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.ldap.client" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_nau.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="ioklist" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.aso" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="srvm/lib/ins_srvm.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="install" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.has.db" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="utilities" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms.util" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_nau.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="iokdstry" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.aso" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_nau.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="iokinit" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.aso" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_net_server.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="install" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.listener" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="network/lib/ins_net_client.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="itrcroute" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.network.client" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="irman" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms.rman" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="ioracle" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms.rman" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="idrdactl" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms.rman" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="idrdalsnr" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms.rman" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+<ohmd:MAKE 
+MAKEPATH="/usr/bin/make" FILENAME="rdbms/lib/ins_rdbms.mk" >
+<ohmd:TARGET ACTIONTYPE="INSTALL" TARGETNAME="idrdaproc" >
+<ohmd:INPUT_LIST>
+<ohmd:INPUT VAL="ORACLE_HOME=%ORACLE_HOME%"/>
+</ohmd:INPUT_LIST>
+<ohmd:COMP_LIST>
+<ohmd:COMP NAME="oracle.rdbms.rman" VERSION="18.0.0.0.0"/>
+</ohmd:COMP_LIST>
+</ohmd:TARGET>
+</ohmd:MAKE>
+</ohmd:MAKE_LIST>
